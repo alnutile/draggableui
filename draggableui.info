@@ -1,0 +1,5 @@
+name = Draggable Test
+description = Test 123
+core = 7.x
+
+files[] = draggableui.js

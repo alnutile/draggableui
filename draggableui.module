@@ -1,0 +1,78 @@
+<?php
+/**
+ * @file
+ * Just saving for later.
+ */ 
+
+function draggableui_emnu(){
+
+   $items['system/timetracker/v1/testarea'] = array(
+    'access arguments' => TRUE,
+    'page callback' => 'draggableui_test',
+    'type' => MENU_CALLBACK,
+  );
+   
+  return $items;
+}
+
+
+function draggableui_test() {
+  //Use the api caller to do a test call 
+  global $user;
+  $path = drupal_get_path('module', 'project_timetracker');
+  drupal_add_css($path . '/js/jquery-ui/css/smoothness/jquery-ui-1.10.0.custom.css');
+  drupal_add_css($path . '/css/drag.css');
+  drupal_add_js($path . '/js/jquery-ui/js/jquery-ui-1.10.0.custom.js');
+  drupal_add_js($path . '/js/drag_test.js');
+  
+  
+  $output = 
+    "
+      <div id='regionleft' class='droppable'>Region Left</div>
+      <div id='regioncenter' class='droppable'>Region Center</div>
+      <div id='regionfooter' class='droppable'>Region Footer</div>
+    ";
+    
+    
+  $output .= 
+    "
+      <div class='draggable' id='fieldx'>Feild X</div>
+      <input type='hidden' class='fieldx-left' value=''>
+      <input type='hidden' class='fieldx-top' value=''>
+      <input type='hidden' class='fieldx-where' value=''>
+      <div class='draggable' id='fieldy'>Feild Y</div>
+      <input type='hidden' class='fieldy-left' value=''>
+      <input type='hidden' class='fieldy-top' value=''>
+      <input type='hidden' class='fieldy-where' value=''>
+      <div class='draggable' id='fields'>Feild S</div>
+      <input type='hidden' class='fields-left' value=''>
+      <input type='hidden' class='fields-top' value=''>
+      <input type='hidden' class='fields-where' value=''>
+      <div class='draggable' id='fieldz'>Feild Z</div>
+      <input type='hidden' class='fieldz-left' value=''>
+      <input type='hidden' class='fieldz-top' value=''>
+      <input type='hidden' class='fieldz-where' value=''>
+    ";
+  
+  //Make a draggable area to then later save for a node/update
+  
+  //1. Setup the Draggable area
+  //2. See what areas this node or theme have to offer
+  //--theme areas
+  //--node areas
+  //3. on completion store in db this information just serialize and dump it to a field on the node.
+  
+/*
+  $apicaller = new ApiCaller('APP001', '28e336ac6c9423d946ba02d19c6a2632', 'http://local.d8.com/system/timetracker/v1/getTimes');
+  $time_items = $apicaller->sendRequest(array(
+      'uid' => $user->uid,
+      'task' => 2,
+  ));
+
+  $form = drupal_get_form('project_tt_form');
+  $output .= render($form);
+  
+  $output .= project_tt_edit_area($time_items);
+*/
+  return $output;  
+}
